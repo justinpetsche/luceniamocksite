@@ -51,7 +51,8 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(
     '.section-eyebrow, .section-title, .section-title-xl, .section-title-left, ' +
     '.section-subtitle, .section-subtitle-lg, ' +
-    '.agent-card, .capability-card, .deploy-card, .gap-item, .tier, ' +
+    '.agent-card, .studio-card, .deploy-card, .gap-item, .tier, ' +
+    '.customer-quote, .quote-answer, ' +
     '.cost-stat, .trust-box, .trust-arrow, ' +
     '.solution-boundary, .solution-outside, ' +
     '.founder-content, .book-card, ' +
@@ -62,7 +63,7 @@ document.querySelectorAll(
 });
 
 // Stagger animations for grid items
-document.querySelectorAll('.agents-grid, .capabilities-grid, .cost-stats, .gap-right, .tiers-stack').forEach(grid => {
+document.querySelectorAll('.agents-grid, .studio-grid, .cost-stats, .gap-right, .tiers-stack').forEach(grid => {
     const children = grid.children;
     Array.from(children).forEach((child, i) => {
         child.style.transitionDelay = `${i * 0.08}s`;

@@ -775,40 +775,96 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ============================================
-   Capabilities Grid
+   Customer Quote Bridge
    ============================================ */
-.capabilities-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+.section-quote {
+    padding: 80px 0;
+    background: var(--gray-50);
+    text-align: center;
 }
 
-.capability-card {
-    padding: 32px;
-    border: 1px solid var(--gray-200);
+.customer-quote {
+    max-width: 720px;
+    margin: 0 auto 24px;
+}
+
+.customer-quote p {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--navy);
+    font-style: italic;
+    letter-spacing: -0.01em;
+}
+
+.customer-quote cite {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.quote-answer {
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 800;
+    color: var(--blue);
+    margin-top: 8px;
+}
+
+/* ============================================
+   Lucenia Studio Grid
+   ============================================ */
+.studio-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+}
+
+.studio-card {
+    padding: 28px 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--radius);
     transition: all 0.25s ease;
 }
 
-.capability-card:hover {
-    border-color: var(--blue);
-    box-shadow: 0 8px 30px rgba(26, 143, 204, 0.08);
+.studio-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-3px);
 }
 
-.capability-icon {
+.studio-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
-.capability-card h3 {
-    font-size: 20px;
+.studio-icon-blue { background: rgba(26, 143, 204, 0.15); color: #4BB4E6; }
+.studio-icon-green { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+.studio-icon-purple { background: rgba(139, 92, 246, 0.15); color: #A78BFA; }
+.studio-icon-pink { background: rgba(168, 85, 247, 0.15); color: #C084FC; }
+.studio-icon-cyan { background: rgba(6, 182, 212, 0.15); color: #22D3EE; }
+
+.studio-card h3 {
+    font-size: 17px;
     font-weight: 700;
-    color: var(--navy);
+    color: var(--white);
     margin-bottom: 8px;
 }
 
-.capability-card p {
-    font-size: 15px;
-    color: var(--gray-500);
+.studio-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
     line-height: 1.5;
 }
 
@@ -1201,6 +1257,9 @@ a { text-decoration: none; color: inherit; }
     .solution-diagram {
         grid-template-columns: 1fr;
     }
+    .studio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
     .gap-layout {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -1248,7 +1307,7 @@ a { text-decoration: none; color: inherit; }
     .section { padding: 72px 0; }
 
     .agents-grid { grid-template-columns: repeat(2, 1fr); }
-    .capabilities-grid { grid-template-columns: 1fr; }
+    .studio-grid { grid-template-columns: repeat(2, 1fr); }
     .deploy-grid { grid-template-columns: 1fr; }
     .founder-layout { grid-template-columns: 1fr; gap: 40px; }
 
@@ -1274,6 +1333,7 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 480px) {
     .agents-grid { grid-template-columns: 1fr; }
+    .studio-grid { grid-template-columns: 1fr; }
     .hero-ctas { flex-direction: column; }
     .hero-ctas .btn { width: 100%; }
     .hero-proof { flex-direction: column; gap: 8px; }
