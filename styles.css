@@ -778,41 +778,72 @@ a { text-decoration: none; color: inherit; }
    Customer Quote Bridge
    ============================================ */
 .section-quote {
-    padding: 80px 0;
-    background: var(--gray-50);
+    padding: 100px 0;
+    background: var(--navy);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-quote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26, 143, 204, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.section-quote::after {
+    content: '\201C';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 280px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    font-family: Georgia, serif;
 }
 
 .customer-quote {
-    max-width: 720px;
-    margin: 0 auto 24px;
+    max-width: 760px;
+    margin: 0 auto 32px;
+    position: relative;
 }
 
 .customer-quote p {
-    font-size: clamp(24px, 3vw, 36px);
+    font-size: clamp(26px, 3.5vw, 42px);
     font-weight: 700;
-    line-height: 1.35;
-    color: var(--navy);
+    line-height: 1.3;
+    color: var(--white);
     font-style: italic;
     letter-spacing: -0.01em;
 }
 
 .customer-quote cite {
     display: block;
-    margin-top: 20px;
-    font-size: 14px;
+    margin-top: 24px;
+    font-size: 13px;
     font-weight: 500;
     font-style: normal;
-    color: var(--gray-500);
+    color: rgba(255,255,255,0.35);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 }
 
 .quote-answer {
-    font-size: clamp(20px, 2.5vw, 28px);
-    font-weight: 800;
-    color: var(--blue);
-    margin-top: 8px;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 900;
+    color: var(--blue-light);
+    margin-top: 12px;
+    position: relative;
+    letter-spacing: -0.02em;
 }
 
 /* ============================================
