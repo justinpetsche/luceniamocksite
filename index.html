@@ -84,27 +84,18 @@
         .hero-logo { margin-bottom: 48px; }
         .hero-logo img { height: 40px; }
 
-        /* Hero sequence — reads top to bottom like a story */
-        .hero-sequence {
-            margin-bottom: 48px;
-        }
-        .hero-line {
-            display: flex; align-items: center; justify-content: center;
-            gap: 16px; margin-bottom: 12px;
-        }
-        .hero-line h2 {
-            font-size: clamp(32px, 5vw, 56px); font-weight: 800;
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 60px); font-weight: 800;
             line-height: 1.1; letter-spacing: -0.03em;
+            color: var(--navy); margin-bottom: 32px;
         }
-        .hero-line p {
-            font-size: 15px; color: var(--gray); max-width: 400px;
+        .hero-points {
+            margin-bottom: 40px;
         }
-        .hero-line-sub {
-            text-align: center; margin-top: 4px; margin-bottom: 20px;
+        .hero-points p {
+            font-size: 18px; color: var(--gray); line-height: 2;
         }
-        .hero-line-sub p {
-            font-size: 15px; color: var(--gray); line-height: 1.6;
-        }
+        .hero-points strong { color: var(--navy); font-weight: 600; }
 
         .hero-tagline {
             font-size: 18px; color: var(--gray);
@@ -308,27 +299,12 @@
                 <img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia">
             </div>
 
-            <div class="hero-sequence">
-                <div class="hero-line">
-                    <h2>Your data <span style="color:var(--blue)">stays private.</span></h2>
-                </div>
-                <div class="hero-line-sub">
-                    <p>Full custody. Nothing leaves your trust boundary — ever.</p>
-                </div>
+            <h1>Search and retrieval<br>for <span style="color:var(--blue)">contextual AI.</span></h1>
 
-                <div class="hero-line">
-                    <h2>Your AI costs <span style="color:var(--gold)">90% less.</span></h2>
-                </div>
-                <div class="hero-line-sub">
-                    <p>Tiered model routing. Most queries hit a small local model. Frontier only when needed.</p>
-                </div>
-
-                <div class="hero-line">
-                    <h2>Set up in <span style="color:var(--navy)">minutes.</span></h2>
-                </div>
-                <div class="hero-line-sub">
-                    <p>Hybrid retrieval — full-text, vector, semantic — running in your environment. Not a six-month project.</p>
-                </div>
+            <div class="hero-points">
+                <p><strong>Private.</strong> Your data never leaves your trust boundary.</p>
+                <p><strong>Cheaper.</strong> 90% less token spend with tiered model routing.</p>
+                <p><strong>Fast.</strong> Hybrid retrieval running in your environment in minutes.</p>
             </div>
 
             <div class="hero-ctas">
