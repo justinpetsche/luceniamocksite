@@ -180,18 +180,28 @@
         .cta-o:hover { border-color: rgba(255,255,255,0.4); }
 
         /* Footer */
-        footer { padding: 28px 32px; border-top: 1px solid var(--line); }
+        footer { padding: 48px 32px 32px; border-top: 1px solid var(--line); background: var(--bg); }
         .foot {
             max-width: 960px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 12px;
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px;
+            margin-bottom: 32px;
         }
-        .foot-l { display: flex; align-items: center; gap: 10px; }
-        .foot-l img { height: 18px; }
-        .foot-l span { font-size: 11px; color: var(--faint); }
-        .foot-r { display: flex; gap: 20px; }
-        .foot-r a { font-size: 11px; color: var(--faint); text-decoration: none; }
-        .foot-r a:hover { color: var(--navy); }
+        .foot-brand img { height: 22px; margin-bottom: 12px; }
+        .foot-brand p { font-size: 12px; color: var(--faint); line-height: 1.6; max-width: 220px; }
+        .foot-col h4 {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; color: var(--navy); margin-bottom: 12px;
+        }
+        .foot-col a {
+            display: block; font-size: 13px; color: var(--muted);
+            text-decoration: none; margin-bottom: 8px; transition: color 0.15s;
+        }
+        .foot-col a:hover { color: var(--navy); }
+        .foot-bottom {
+            max-width: 960px; margin: 0 auto;
+            padding-top: 20px; border-top: 1px solid var(--line);
+            font-size: 11px; color: var(--faint);
+        }
 
         @media (max-width: 768px) {
             .hero { padding: 160px 24px 80px; }
@@ -213,8 +223,6 @@
     <div class="nav-inner">
         <a href="#" class="nav-logo"><img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia"></a>
         <div class="nav-r">
-            <a href="https://lucenia.io/docs" class="nav-link">Docs</a>
-            <a href="https://cloud.lucenia.io" class="btn btn-ghost btn-sm">Try Free</a>
             <a href="mailto:sales@lucenia.io" class="btn btn-fill btn-sm">Talk to Sales</a>
         </div>
     </div>
@@ -309,17 +317,29 @@
 
 <footer>
     <div class="foot">
-        <div class="foot-l">
+        <div class="foot-brand">
             <img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia">
-            <span>&copy; 2026 Lucenia, Inc.</span>
+            <p>The sovereign AI platform. Built by the creator of OpenSearch.</p>
         </div>
-        <div class="foot-r">
-            <a href="https://lucenia.io/docs">Docs</a>
+        <div class="foot-col">
+            <h4>Product</h4>
+            <a href="https://lucenia.io/docs">Documentation</a>
+            <a href="https://cloud.lucenia.io">Lucenia Cloud</a>
+            <a href="https://lucenia.io/pricing">Pricing</a>
+        </div>
+        <div class="foot-col">
+            <h4>Company</h4>
+            <a href="https://lucenia.io/why-lucenia">About</a>
+            <a href="https://lucenia.io/trust">Trust &amp; Security</a>
+            <a href="mailto:sales@lucenia.io">Contact</a>
+        </div>
+        <div class="foot-col">
+            <h4>Legal</h4>
             <a href="https://lucenia.io/privacy">Privacy</a>
             <a href="https://lucenia.io/terms">Terms</a>
-            <a href="https://lucenia.io/security">Security</a>
         </div>
     </div>
+    <div class="foot-bottom">&copy; 2026 Lucenia, Inc. All rights reserved.</div>
 </footer>
 
 </body>
