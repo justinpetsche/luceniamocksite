@@ -178,66 +178,136 @@
             align-items: center;
         }
 
-        /* ── Trust boundary ── */
-        .boundary-box {
-            border-radius: 16px; position: relative;
-            background: var(--navy);
-            padding: 40px 28px 28px;
-            box-shadow: 0 8px 32px rgba(10,30,51,0.18);
+        /* ── Trust diagram ── */
+        .trust-diagram {
+            display: flex; align-items: stretch; gap: 0;
+            margin-top: 48px;
         }
-        .boundary-label {
-            position: absolute; top: -11px; left: 24px;
-            background: var(--blue); color: #fff;
-            font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-            text-transform: uppercase; padding: 4px 14px; border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(43,122,181,0.3);
+        .td-inside {
+            flex: 3; border: 2px solid var(--blue); border-radius: 14px;
+            overflow: hidden; position: relative;
         }
-        .boundary-items {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        .td-header {
+            background: var(--navy); color: #fff; text-align: center;
+            padding: 10px 16px; font-size: 11px; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
         }
-        .b-item {
-            display: flex; align-items: center; gap: 12px;
-            padding: 14px 16px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            font-size: 13px; font-weight: 600; color: #fff;
+        .td-body {
+            padding: 28px 24px;
+            background: rgba(43,122,181,0.04);
+            display: flex; gap: 20px; align-items: center;
         }
-        .b-ico {
-            width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0;
+        .td-sources {
+            display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
+        }
+        .td-src {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 14px; background: #fff;
+            border: 1px solid var(--line); border-radius: 8px;
+            font-size: 12px; font-weight: 600; color: var(--navy);
+        }
+        .td-src svg { color: var(--blue); flex-shrink: 0; }
+        .td-center {
+            flex: 1; display: flex; flex-direction: column; align-items: center;
+            gap: 12px;
+        }
+        .td-lucenia {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: #fff; border: 2px solid var(--line);
             display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(10,30,51,0.08);
         }
-        .bi-blue { background: rgba(43,122,181,0.2); color: var(--blue-bright); }
-        .bi-cyan { background: rgba(43,165,181,0.2); color: var(--cyan); }
-        .bi-purple { background: rgba(124,92,191,0.2); color: var(--purple); }
-        .bi-gold { background: rgba(212,151,63,0.2); color: var(--gold); }
-        .bi-pink { background: rgba(196,91,124,0.2); color: var(--pink); }
-        .boundary-connector {
-            text-align: center; padding: 16px 0 4px;
+        .td-lucenia img { height: 20px; }
+        .td-caps {
+            font-size: 10px; font-weight: 700; color: var(--blue);
+            text-transform: uppercase; letter-spacing: 0.06em;
+            text-align: center; line-height: 1.5;
         }
-        .connector-line {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 16px;
-            border: 1px dashed rgba(255,255,255,0.15); border-radius: 8px;
-            font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 600;
-            letter-spacing: 0.03em;
+        .td-llm {
+            flex-shrink: 0; text-align: center;
+            padding: 16px; background: #fff;
+            border: 1px solid var(--line); border-radius: 10px;
         }
-        .connector-line svg { opacity: 0.5; }
-        .external-bar {
-            text-align: center; margin-top: 16px;
+        .td-llm-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(43,122,181,0.06);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px; color: var(--blue);
         }
-        .ext-label {
-            font-size: 10px; color: var(--faint); font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.08em;
-            margin-bottom: 8px;
+        .td-llm strong {
+            display: block; font-size: 13px; font-weight: 700; color: var(--navy);
         }
-        .ext-chips {
-            display: flex; justify-content: center; gap: 8px;
+        .td-llm span {
+            font-size: 10px; color: var(--faint); text-transform: uppercase;
+            letter-spacing: 0.05em; font-weight: 600;
         }
-        .ext-chip {
-            padding: 6px 14px; border-radius: 8px;
-            border: 1px solid var(--line); background: var(--bg);
+        .td-infra {
+            display: flex; border-top: 1px solid rgba(43,122,181,0.15);
+        }
+        .td-infra-col {
+            flex: 1; padding: 12px 16px; text-align: center;
+        }
+        .td-infra-col:first-child {
+            border-right: 1px solid rgba(43,122,181,0.15);
+        }
+        .td-infra-label {
+            font-size: 9px; font-weight: 700; color: var(--blue);
+            text-transform: uppercase; letter-spacing: 0.1em;
+            margin-bottom: 6px;
+        }
+        .td-infra-logos {
+            display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
             font-size: 11px; color: var(--muted); font-weight: 500;
+        }
+
+        /* Arrow connector */
+        .td-arrow {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; padding: 0 12px; flex-shrink: 0;
+        }
+        .td-arrow-line {
+            width: 48px; border-top: 2px dashed var(--gold);
+            position: relative;
+        }
+        .td-arrow-line::after {
+            content: ''; position: absolute; right: -6px; top: -6px;
+            border: 5px solid transparent;
+            border-left: 6px solid var(--gold);
+        }
+        .td-arrow-label {
+            font-size: 9px; font-weight: 700; color: var(--gold);
+            text-transform: uppercase; letter-spacing: 0.08em;
+            margin-top: 6px; text-align: center; line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        /* Outside box */
+        .td-outside {
+            flex-shrink: 0; width: 130px;
+            border: 2px solid var(--gold); border-radius: 14px;
+            overflow: hidden;
+        }
+        .td-outside .td-header {
+            background: var(--gold);
+        }
+        .td-outside-body {
+            padding: 24px 16px; text-align: center;
+            background: rgba(212,151,63,0.04);
+            height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+        .td-outside-icon {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(212,151,63,0.08);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 10px; color: var(--gold);
+        }
+        .td-outside-body strong {
+            display: block; font-size: 13px; font-weight: 700; color: var(--navy);
+            margin-bottom: 2px;
+        }
+        .td-outside-body span {
+            font-size: 10px; color: var(--faint); font-weight: 500;
         }
 
         /* ── Tiered routing (dark section) ── */
@@ -451,6 +521,11 @@
             .hero h1 { font-size: 42px; }
             h2.sec-title { font-size: 32px; }
             .split { grid-template-columns: 1fr; gap: 48px; }
+            .trust-diagram { flex-direction: column; }
+            .td-outside { width: 100%; }
+            .td-arrow { padding: 12px 0; }
+            .td-arrow-line { width: 0; height: 32px; border-top: none; border-left: 2px dashed var(--gold); }
+            .td-arrow-line::after { right: auto; top: auto; bottom: -6px; left: -6px; border: 5px solid transparent; border-top: 6px solid var(--gold); border-left: 5px solid transparent; }
             .grid5 { grid-template-columns: repeat(3, 1fr); }
             .grid3 { grid-template-columns: repeat(2, 1fr); }
             .grid4 { grid-template-columns: repeat(2, 1fr); }
@@ -501,36 +576,60 @@
 
 <!-- Trust boundary -->
 <section class="section"><div class="wrap">
-    <div class="split">
-        <div>
-            <p class="eyebrow eyebrow-green">Trust</p>
-            <h2 class="sec-title">Your data never leaves. <em>Ever.</em></h2>
-            <p class="sec-desc">Retrieval, models, agents, and connectors all run inside your boundary. Public LLMs receive context only — never raw data. No API keys leaving the perimeter. No vendor lock-in. Audit everything.</p>
-        </div>
-        <div>
-            <div class="boundary-box">
-                <div class="boundary-label">Your perimeter</div>
-                <div class="boundary-items">
-                    <div class="b-item"><div class="b-ico bi-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>Retrieval</div>
-                    <div class="b-item"><div class="b-ico bi-cyan"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6"/></svg></div>Connectors</div>
-                    <div class="b-item"><div class="b-ico bi-purple"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>Models</div>
-                    <div class="b-item"><div class="b-ico bi-gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div>Agents</div>
-                    <div class="b-item"><div class="b-ico bi-pink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>Operations</div>
+    <div class="sec-head">
+        <p class="eyebrow eyebrow-blue">Under your control</p>
+        <h2 class="sec-title">Your trust boundary. <em>Your AI.</em></h2>
+        <p class="sec-desc">Lucenia keeps your data inside the boundary. Public LLMs get context — never the source.</p>
+    </div>
+
+    <div class="trust-diagram">
+        <!-- Inside boundary -->
+        <div class="td-inside">
+            <div class="td-header">Your Trust Boundary</div>
+            <div class="td-body">
+                <div class="td-sources">
+                    <div class="td-src"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Applications</div>
+                    <div class="td-src"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>APIs</div>
                 </div>
-                <div class="boundary-connector">
-                    <div class="connector-line">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                        Context only — no raw data
+                <div class="td-center">
+                    <div class="td-lucenia"><img src="https://lucenia.io/img/lucenia-icon.png" alt="Lucenia"></div>
+                    <div class="td-caps">Full-text / Vector<br>Hybrid / Real-time</div>
+                </div>
+                <div class="td-llm">
+                    <div class="td-llm-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 14a4 4 0 0 1-8 0"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg></div>
+                    <strong>Private LLM</strong>
+                    <span>On-prem / BYO / Sovereign</span>
+                </div>
+            </div>
+            <div class="td-infra">
+                <div class="td-infra-col">
+                    <div class="td-infra-label">Enterprise Data</div>
+                    <div class="td-infra-logos">
+                        <span>Salesforce</span><span>Slack</span><span>Jira</span><span>GitHub</span><span>Drive</span>
+                    </div>
+                </div>
+                <div class="td-infra-col">
+                    <div class="td-infra-label">Infrastructure</div>
+                    <div class="td-infra-logos">
+                        <span>AWS</span><span>Azure</span><span>GCP</span><span>On-Prem</span>
                     </div>
                 </div>
             </div>
-            <div class="external-bar">
-                <div class="ext-label">External (when needed)</div>
-                <div class="ext-chips">
-                    <div class="ext-chip">OpenAI</div>
-                    <div class="ext-chip">Anthropic</div>
-                    <div class="ext-chip">Gemini</div>
-                </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="td-arrow">
+            <div class="td-arrow-line"></div>
+            <div class="td-arrow-label">Context only<br>No data</div>
+        </div>
+
+        <!-- Outside -->
+        <div class="td-outside">
+            <div class="td-header">Outside</div>
+            <div class="td-outside-body">
+                <div class="td-outside-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <strong>Public LLM</strong>
+                <span>ChatGPT / Claude / etc.</span>
             </div>
         </div>
     </div>
