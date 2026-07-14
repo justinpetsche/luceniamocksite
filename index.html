@@ -22,6 +22,7 @@
             --gold-soft: rgba(212,151,63,0.12);
             --green: #22c568;
             --green-soft: rgba(34,197,104,0.1);
+            /* green reserved for future use only */
             --purple: #7c5cbf;
             --pink: #c45b7c;
             --cyan: #2ba5b5;
@@ -79,21 +80,6 @@
             padding: 160px 0 80px;
             text-align: center;
         }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 16px; border-radius: 100px;
-            background: var(--green-soft); border: 1px solid rgba(34,197,104,0.2);
-            font-size: 12px; font-weight: 600; color: #1a8a4a;
-            margin-bottom: 28px;
-        }
-        .hero-badge .dot {
-            width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
         .hero h1 {
             font-size: 60px; font-weight: 900; line-height: 1.05;
             letter-spacing: -0.04em; color: var(--navy); margin-bottom: 24px;
@@ -139,34 +125,6 @@
             width: 1px; height: 16px; background: var(--line);
         }
 
-        /* ── Stats ── */
-        .stats {
-            padding: 56px 0;
-            border-top: 1px solid var(--line);
-            background: #fff;
-        }
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-        }
-        .stat-item {
-            text-align: center; padding: 12px 0;
-        }
-        .stat-item:not(:last-child) {
-            border-right: 1px solid var(--line);
-        }
-        .stat-item .num {
-            font-size: 48px; font-weight: 900; letter-spacing: -0.04em;
-            line-height: 1; margin-bottom: 8px;
-        }
-        .stat-item:nth-child(1) .num {
-            background: linear-gradient(135deg, var(--green) 0%, #1aad5a 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .stat-item:nth-child(2) .num { color: var(--blue); }
-        .stat-item:nth-child(3) .num { color: var(--gold); }
-        .stat-item .label {
-            font-size: 13px; color: var(--muted); font-weight: 500;
-        }
 
         /* ── Section layout ── */
         .section { padding: 100px 0; }
@@ -183,7 +141,7 @@
         }
         .eyebrow-blue { color: var(--blue); }
         .eyebrow-gold { color: var(--gold); }
-        .eyebrow-green { color: var(--green); }
+        .eyebrow-green { color: var(--blue); }
 
         h2.sec-title {
             font-size: 40px; font-weight: 900; line-height: 1.1;
@@ -217,13 +175,14 @@
 
         /* ── Trust boundary ── */
         .boundary-box {
-            border: 2px solid var(--green); border-radius: 16px;
+            border: 1px solid var(--line); border-radius: 16px;
             padding: 36px 28px 28px; position: relative;
-            background: linear-gradient(135deg, rgba(34,197,104,0.03) 0%, rgba(43,122,181,0.03) 100%);
+            background: var(--bg);
+            box-shadow: 0 2px 12px rgba(10,30,51,0.06);
         }
         .boundary-label {
             position: absolute; top: -11px; left: 24px;
-            background: var(--green); color: #fff;
+            background: var(--navy); color: #fff;
             font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
             text-transform: uppercase; padding: 3px 12px; border-radius: 5px;
         }
@@ -241,7 +200,7 @@
             width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
         }
         .bd-blue { background: var(--blue); }
-        .bd-green { background: var(--green); }
+        .bd-green { background: var(--cyan); }
         .bd-purple { background: var(--purple); }
         .bd-gold { background: var(--gold); }
         .boundary-connector {
@@ -290,7 +249,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 14px; font-weight: 800;
         }
-        .t1 .badge { background: rgba(34,197,104,0.12); color: var(--green); }
+        .t1 .badge { background: rgba(43,122,181,0.12); color: var(--blue); }
         .t2 .badge { background: rgba(212,151,63,0.12); color: var(--gold); }
         .t3 .badge { background: rgba(196,91,124,0.12); color: var(--pink); }
         .tier .body { flex: 1; }
@@ -311,7 +270,7 @@
         }
         .routing-stat .big {
             font-size: 36px; font-weight: 900; letter-spacing: -0.03em;
-            background: linear-gradient(135deg, var(--green) 0%, #4ade80 100%);
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-bright) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .routing-stat .note {
@@ -338,7 +297,7 @@
             margin-bottom: 16px;
         }
         .ico-b { background: rgba(43,122,181,0.08); color: var(--blue); }
-        .ico-g { background: rgba(34,197,104,0.08); color: var(--green); }
+        .ico-g { background: rgba(43,122,181,0.08); color: var(--blue); }
         .ico-v { background: rgba(124,92,191,0.08); color: var(--purple); }
         .ico-p { background: rgba(196,91,124,0.08); color: var(--pink); }
         .ico-c { background: rgba(43,165,181,0.08); color: var(--cyan); }
@@ -396,7 +355,7 @@
         .cred-list li:last-child { border-bottom: none; }
         .cred-check {
             width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
-            background: var(--green-soft); color: var(--green);
+            background: rgba(43,122,181,0.08); color: var(--blue);
             display: flex; align-items: center; justify-content: center;
             margin-top: 2px;
         }
@@ -520,7 +479,6 @@
 <div class="hero-wrapper">
 <div class="wrap">
 <section class="hero">
-    <div class="hero-badge"><span class="dot"></span> Now available on Lucenia Cloud</div>
     <h1>Sovereign AI.<br>One stack. <em>Your boundary.</em></h1>
     <p class="sub">Enterprise search, retrieval, and agents — entirely within your perimeter. No data egress. 90% less token spend.</p>
     <div class="btns">
@@ -539,24 +497,6 @@
 </section>
 </div>
 </div>
-
-<!-- Stats -->
-<section class="stats"><div class="wrap">
-    <div class="stats-grid">
-        <div class="stat-item">
-            <div class="num">90%</div>
-            <div class="label">Less token spend via tiered routing</div>
-        </div>
-        <div class="stat-item">
-            <div class="num">Minutes</div>
-            <div class="label">From zero to production retrieval</div>
-        </div>
-        <div class="stat-item">
-            <div class="num">Zero</div>
-            <div class="label">Data leaves your perimeter</div>
-        </div>
-    </div>
-</div></section>
 
 <!-- Trust boundary -->
 <section class="section"><div class="wrap">
@@ -683,7 +623,7 @@
             <p>Code generation, review, and refactoring grounded in your codebase and internal standards.</p>
         </div>
         <div class="use-card">
-            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
             <h3>Support</h3>
             <p>Customer-facing and internal support agents that pull from your real docs, tickets, and runbooks.</p>
         </div>
