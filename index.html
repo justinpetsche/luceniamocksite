@@ -11,412 +11,331 @@
     <link rel="icon" href="https://lucenia.io/img/lucenia-icon.png" type="image/png">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
             --navy: #0f2b4a;
             --navy-dark: #091e34;
             --blue: #2b7ab5;
-            --blue-light: #3a9ad9;
             --gold: #c4893b;
             --green: #2a9d6e;
             --purple: #7c5cbf;
             --pink: #c45b7c;
             --cyan: #2ba5b5;
-            --white: #ffffff;
-            --bg: #fafbfc;
+            --bg: #f8f9fb;
             --text: #1e293b;
             --muted: #64748b;
             --faint: #94a3b8;
-            --line: #e8ecf1;
-        }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--white); color: var(--text);
-            -webkit-font-smoothing: antialiased;
+            --line: #e2e7ed;
+            --page: 960px;
+            --gutter: 32px;
+            --section: 120px;
         }
 
-        /* Nav */
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #fff; color: var(--text);
+            -webkit-font-smoothing: antialiased; line-height: 1.6;
+        }
+        .wrap { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
+
+        /* ── Nav ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--line);
+            height: 60px; display: flex; align-items: center;
         }
-        .nav-inner {
-            max-width: 960px; margin: 0 auto;
+        nav .wrap {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 16px 32px;
+            width: 100%;
         }
-        .nav-logo img { height: 26px; }
-        .nav-r { display: flex; gap: 8px; align-items: center; }
-        .nav-link {
-            font-size: 13px; color: var(--muted); text-decoration: none;
-            padding: 8px 14px; border-radius: 6px; transition: color 0.15s;
+        nav img { height: 26px; display: block; }
+        nav a.cta {
+            font-size: 13px; font-weight: 600; color: #fff;
+            background: var(--navy); border: 1px solid var(--navy);
+            padding: 8px 20px; border-radius: 6px; text-decoration: none;
+            transition: background 0.15s;
         }
-        .nav-link:hover { color: var(--navy); }
-        .btn {
-            display: inline-block; font-size: 13px; font-weight: 600;
-            text-decoration: none; border-radius: 6px; transition: all 0.15s;
-        }
-        .btn-sm { padding: 8px 18px; }
-        .btn-lg { padding: 14px 28px; font-size: 15px; border-radius: 8px; }
-        .btn-fill { background: var(--navy); color: #fff; border: 1px solid var(--navy); }
-        .btn-fill:hover { background: var(--navy-dark); }
-        .btn-ghost { background: none; color: var(--navy); border: 1px solid var(--line); }
-        .btn-ghost:hover { border-color: var(--navy); }
+        nav a.cta:hover { background: var(--navy-dark); }
 
-        /* Hero */
+        /* ── Hero ── */
         .hero {
-            max-width: 960px; margin: 0 auto;
-            padding: 200px 32px 120px;
+            padding: 160px 0 var(--section);
             text-align: center;
         }
         .hero h1 {
-            font-size: clamp(40px, 6vw, 56px); font-weight: 800;
-            line-height: 1.08; letter-spacing: -0.03em;
-            color: var(--navy); margin-bottom: 20px;
+            font-size: 52px; font-weight: 800; line-height: 1.08;
+            letter-spacing: -0.035em; color: var(--navy); margin-bottom: 20px;
         }
-        .hero h1 span { color: var(--blue); }
-        .hero-sub {
+        .hero h1 em {
+            font-style: normal; color: var(--blue);
+        }
+        .hero .sub {
             font-size: 18px; color: var(--muted); line-height: 1.7;
-            max-width: 580px; margin: 0 auto 36px;
+            max-width: 560px; margin: 0 auto 40px;
         }
-        .hero-ctas {
-            display: flex; gap: 10px; justify-content: center;
-            margin-bottom: 56px;
+        .hero .btns {
+            display: flex; gap: 12px; justify-content: center;
+            margin-bottom: 64px;
         }
+        .btn-p, .btn-s {
+            padding: 14px 28px; border-radius: 8px; font-size: 15px;
+            font-weight: 600; text-decoration: none; transition: all 0.15s;
+            display: inline-block;
+        }
+        .btn-p { background: var(--navy); color: #fff; border: 1px solid var(--navy); }
+        .btn-p:hover { background: var(--navy-dark); }
+        .btn-s { background: none; color: var(--navy); border: 1px solid var(--line); }
+        .btn-s:hover { border-color: var(--navy); }
         .proof {
             display: flex; align-items: center; justify-content: center;
-            gap: 24px; flex-wrap: wrap;
+            gap: 20px; flex-wrap: wrap;
+            font-size: 12px; color: var(--faint); font-weight: 500;
         }
-        .proof-item { font-size: 12px; color: var(--faint); font-weight: 500; }
-        .proof-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--line); }
-
-        /* Compliance badges */
-        .badges {
-            max-width: 960px; margin: 0 auto;
-            padding: 0 32px 32px;
-            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-            border-bottom: 1px solid var(--line);
-            margin-bottom: 32px;
-        }
-        .badge {
-            text-align: center;
-        }
-        .badge-icon {
-            width: 44px; height: 44px; border-radius: 10px;
-            background: var(--bg); border: 1px solid var(--line);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 8px;
-            font-size: 11px; font-weight: 800; color: var(--navy);
-            letter-spacing: -0.02em;
-        }
-        .badge-label { font-size: 10px; color: var(--faint); font-weight: 600; }
-
-        /* Trust boundary diagram */
-        .boundary {
-            max-width: 960px; margin: 0 auto;
-            padding: 0 32px 100px;
-        }
-        .boundary-header {
-            text-align: center; margin-bottom: 40px;
-        }
-        .boundary-header h2 {
-            font-size: 30px; font-weight: 800; color: var(--navy);
-            letter-spacing: -0.02em; margin-bottom: 8px;
-        }
-        .boundary-header p {
-            font-size: 15px; color: var(--muted);
-        }
-        .boundary-grid {
-            display: grid; grid-template-columns: 1fr 48px 1fr; gap: 0;
-            align-items: stretch;
-        }
-        .boundary-box {
-            border-radius: 12px; padding: 28px 24px;
-        }
-        .b-danger {
-            background: #fef2f2; border: 1px solid #fecaca;
-        }
-        .b-safe {
-            background: #f0fdf4; border: 1px solid #bbf7d0;
-        }
-        .b-label {
-            font-size: 10px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.12em; margin-bottom: 16px;
-        }
-        .b-danger .b-label { color: #dc2626; }
-        .b-safe .b-label { color: var(--green); }
-        .b-title {
-            font-size: 18px; font-weight: 700; color: var(--navy);
-            margin-bottom: 6px;
-        }
-        .b-desc {
-            font-size: 13px; color: var(--muted); line-height: 1.6;
-            margin-bottom: 16px;
-        }
-        .b-items {
-            display: flex; flex-direction: column; gap: 6px;
-        }
-        .b-item {
-            font-size: 12px; color: var(--muted);
-            display: flex; align-items: center; gap: 8px;
-        }
-        .b-item-dot {
-            width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
-        }
-        .b-danger .b-item-dot { background: #fca5a5; }
-        .b-safe .b-item-dot { background: #86efac; }
-        .boundary-arrow {
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; gap: 4px;
-        }
-        .arrow-line {
-            width: 2px; flex: 1; min-height: 20px;
-            background: var(--line);
-        }
-        .arrow-icon {
-            font-size: 20px; color: var(--faint); font-weight: 300;
+        .proof i {
+            width: 3px; height: 3px; border-radius: 50%;
+            background: var(--line); display: inline-block; font-style: normal;
         }
 
-        /* How */
+        /* ── Divider ── */
+        hr.sep {
+            border: none; border-top: 1px solid var(--line);
+            margin: 0;
+        }
+
+        /* ── How ── */
         .how {
-            background: var(--bg); border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            padding: 80px 32px;
+            padding: var(--section) 0;
         }
-        .how-inner {
-            max-width: 960px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
-            align-items: center;
+        .how .inner {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 72px;
+            align-items: start;
         }
         .eyebrow {
             font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.15em; color: var(--blue); margin-bottom: 12px;
+            letter-spacing: 0.15em; color: var(--blue); margin-bottom: 14px;
         }
-        .how-text h2 {
-            font-size: 30px; font-weight: 800; line-height: 1.15;
-            letter-spacing: -0.02em; color: var(--navy); margin-bottom: 12px;
+        .how h2 {
+            font-size: 32px; font-weight: 800; line-height: 1.15;
+            letter-spacing: -0.025em; color: var(--navy); margin-bottom: 14px;
         }
-        .how-text p { font-size: 15px; color: var(--muted); line-height: 1.7; }
-        .tiers { display: flex; flex-direction: column; gap: 8px; }
+        .how .desc {
+            font-size: 15px; color: var(--muted); line-height: 1.7;
+        }
+        .tiers { display: flex; flex-direction: column; gap: 10px; }
         .tier {
             display: flex; align-items: center; gap: 14px;
-            padding: 16px 18px; border-radius: 8px;
-            border: 1px solid var(--line); background: var(--white);
+            padding: 16px 20px; border-radius: 10px;
+            border: 1px solid var(--line); background: var(--bg);
         }
-        .tier-n {
-            width: 30px; height: 30px; border-radius: 6px; flex-shrink: 0;
+        .tier .n {
+            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
-            font-size: 12px; font-weight: 800;
+            font-size: 13px; font-weight: 800;
         }
-        .t1 .tier-n { background: rgba(42,157,110,0.1); color: var(--green); }
-        .t2 .tier-n { background: rgba(196,137,59,0.1); color: var(--gold); }
-        .t3 .tier-n { background: rgba(196,91,124,0.1); color: var(--pink); }
-        .tier-info { flex: 1; }
-        .tier-info strong { font-size: 13px; font-weight: 600; color: var(--navy); }
-        .tier-info span { font-size: 11px; color: var(--faint); margin-left: 6px; }
-        .tier-cost { font-size: 15px; font-weight: 800; color: var(--faint); }
+        .t1 .n { background: rgba(42,157,110,0.1); color: var(--green); }
+        .t2 .n { background: rgba(196,137,59,0.1); color: var(--gold); }
+        .t3 .n { background: rgba(196,91,124,0.1); color: var(--pink); }
+        .tier .body { flex: 1; }
+        .tier .body strong { font-size: 14px; color: var(--navy); }
+        .tier .body span { font-size: 12px; color: var(--faint); margin-left: 8px; }
+        .tier .cost { font-size: 16px; font-weight: 800; color: var(--faint); letter-spacing: -0.02em; }
 
-        /* Studio */
-        .studio { padding: 80px 32px; }
-        .studio-inner { max-width: 960px; margin: 0 auto; text-align: center; }
-        .studio-inner h2 {
-            font-size: 30px; font-weight: 800; color: var(--navy);
-            letter-spacing: -0.02em; margin-bottom: 8px;
+        /* ── Studio ── */
+        .studio {
+            padding: var(--section) 0;
+            background: var(--bg); border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
         }
-        .studio-inner h2 span { color: var(--blue); }
-        .studio-sub {
-            font-size: 15px; color: var(--muted); max-width: 480px;
-            margin: 0 auto 40px; line-height: 1.7;
+        .studio .head { text-align: center; margin-bottom: 48px; }
+        .studio h2 {
+            font-size: 32px; font-weight: 800; color: var(--navy);
+            letter-spacing: -0.025em; margin-bottom: 10px;
         }
-        .studio-grid {
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+        .studio h2 em { font-style: normal; color: var(--blue); }
+        .studio .head p {
+            font-size: 15px; color: var(--muted); max-width: 500px;
+            margin: 0 auto; line-height: 1.7;
         }
-        .s-card {
-            background: var(--bg); border: 1px solid var(--line);
-            border-radius: 10px; padding: 24px 12px; text-align: center;
+        .grid5 {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
         }
-        .s-icon {
-            width: 40px; height: 40px; border-radius: 8px;
+        .card {
+            background: #fff; border: 1px solid var(--line);
+            border-radius: 12px; padding: 28px 16px; text-align: center;
+        }
+        .card .ico {
+            width: 44px; height: 44px; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 12px;
+            margin: 0 auto 14px;
         }
-        .si-blue { background: rgba(43,122,181,0.08); color: var(--blue); }
-        .si-green { background: rgba(42,157,110,0.08); color: var(--green); }
-        .si-purple { background: rgba(124,92,191,0.08); color: var(--purple); }
-        .si-pink { background: rgba(196,91,124,0.08); color: var(--pink); }
-        .si-cyan { background: rgba(43,165,181,0.08); color: var(--cyan); }
-        .s-card h3 { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
-        .s-card p { font-size: 11px; color: var(--faint); line-height: 1.4; }
+        .ico-b { background: rgba(43,122,181,0.07); color: var(--blue); }
+        .ico-g { background: rgba(42,157,110,0.07); color: var(--green); }
+        .ico-v { background: rgba(124,92,191,0.07); color: var(--purple); }
+        .ico-p { background: rgba(196,91,124,0.07); color: var(--pink); }
+        .ico-c { background: rgba(43,165,181,0.07); color: var(--cyan); }
+        .card h3 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+        .card p { font-size: 12px; color: var(--faint); line-height: 1.5; }
 
-        /* CTA */
-        .cta { background: var(--navy); padding: 72px 32px; text-align: center; }
-        .cta h2 { font-size: 30px; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: -0.02em; }
-        .cta p { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
-        .cta-btns { display: flex; gap: 10px; justify-content: center; }
-        .cta-w {
+        /* ── CTA ── */
+        .cta {
+            background: var(--navy); padding: 80px 0; text-align: center;
+        }
+        .cta h2 {
+            font-size: 32px; font-weight: 800; color: #fff;
+            letter-spacing: -0.025em; margin-bottom: 12px;
+        }
+        .cta .sub { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+        .cta .btns { display: flex; gap: 12px; justify-content: center; }
+        .cta .btn-w {
             background: #fff; color: var(--navy); padding: 14px 28px;
-            border-radius: 8px; font-size: 14px; font-weight: 600;
+            border-radius: 8px; font-size: 15px; font-weight: 600;
             text-decoration: none; transition: background 0.15s;
         }
-        .cta-w:hover { background: #f1f5f9; }
-        .cta-o {
+        .cta .btn-w:hover { background: #f1f5f9; }
+        .cta .btn-o {
             border: 1px solid rgba(255,255,255,0.2); color: #fff;
-            padding: 14px 28px; border-radius: 8px; font-size: 14px;
+            padding: 14px 28px; border-radius: 8px; font-size: 15px;
             font-weight: 600; text-decoration: none; background: none;
         }
-        .cta-o:hover { border-color: rgba(255,255,255,0.4); }
+        .cta .btn-o:hover { border-color: rgba(255,255,255,0.4); }
 
-        /* Footer */
-        footer { padding: 48px 32px 32px; border-top: 1px solid var(--line); background: var(--bg); }
-        .foot {
-            max-width: 960px; margin: 0 auto;
-            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px;
-            margin-bottom: 32px;
+        /* ── Footer ── */
+        footer {
+            padding: 56px 0 40px;
+            border-top: 1px solid var(--line); background: var(--bg);
         }
-        .foot-brand img { height: 22px; margin-bottom: 12px; }
-        .foot-brand p { font-size: 12px; color: var(--faint); line-height: 1.6; max-width: 220px; }
+        .badges {
+            display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+            padding-bottom: 40px; margin-bottom: 40px;
+            border-bottom: 1px solid var(--line);
+        }
+        .badge { text-align: center; }
+        .badge .b {
+            width: 48px; height: 48px; border-radius: 10px;
+            background: #fff; border: 1px solid var(--line);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 6px;
+            font-size: 11px; font-weight: 800; color: var(--navy);
+        }
+        .badge .l { font-size: 10px; color: var(--faint); font-weight: 600; }
+        .foot-grid {
+            display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px;
+            margin-bottom: 40px;
+        }
+        .foot-brand img { height: 22px; margin-bottom: 10px; }
+        .foot-brand p { font-size: 12px; color: var(--faint); line-height: 1.6; }
         .foot-col h4 {
             font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.12em; color: var(--navy); margin-bottom: 12px;
+            letter-spacing: 0.1em; color: var(--navy); margin-bottom: 14px;
         }
         .foot-col a {
             display: block; font-size: 13px; color: var(--muted);
-            text-decoration: none; margin-bottom: 8px; transition: color 0.15s;
+            text-decoration: none; margin-bottom: 10px; transition: color 0.15s;
         }
         .foot-col a:hover { color: var(--navy); }
-        .foot-bottom {
-            max-width: 960px; margin: 0 auto;
-            padding-top: 20px; border-top: 1px solid var(--line);
+        .copyright {
+            padding-top: 24px; border-top: 1px solid var(--line);
             font-size: 11px; color: var(--faint);
         }
 
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .hero { padding: 160px 24px 80px; }
+            :root { --section: 80px; --gutter: 24px; }
+            .hero { padding-top: 130px; }
             .hero h1 { font-size: 36px; }
-            .boundary-grid { grid-template-columns: 1fr; gap: 16px; }
-            .boundary-arrow { flex-direction: row; padding: 8px 0; }
-            .arrow-line { width: auto; height: 2px; min-height: auto; min-width: 20px; flex: 1; }
+            .how .inner { grid-template-columns: 1fr; gap: 40px; }
+            .grid5 { grid-template-columns: repeat(2, 1fr); }
+            .grid5 .card:last-child { grid-column: span 2; }
+            .foot-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
             .badges { gap: 20px; }
-            .how-inner { grid-template-columns: 1fr; gap: 32px; }
-            .studio-grid { grid-template-columns: repeat(2, 1fr); }
-            .studio-grid .s-card:last-child { grid-column: span 2; }
-            .nav-link { display: none; }
         }
         @media (max-width: 480px) {
-            .studio-grid { grid-template-columns: 1fr; }
-            .studio-grid .s-card:last-child { grid-column: span 1; }
+            .hero h1 { font-size: 30px; }
+            .grid5 { grid-template-columns: 1fr; }
+            .grid5 .card:last-child { grid-column: span 1; }
+            .foot-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="nav-inner">
-        <a href="#" class="nav-logo"><img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia"></a>
-        <div class="nav-r">
-            <a href="mailto:sales@lucenia.io" class="btn btn-fill btn-sm">Talk to Sales</a>
-        </div>
-    </div>
-</nav>
+<nav><div class="wrap">
+    <a href="#"><img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia"></a>
+    <a href="mailto:sales@lucenia.io" class="cta">Talk to Sales</a>
+</div></nav>
 
+<div class="wrap">
 <section class="hero">
-    <h1>Sovereign AI.<br>One stack. <span>Your boundary.</span></h1>
-    <p class="hero-sub">Retrieval, models, agents, and operations — no data leaves, 90% less token spend, deploy in minutes.</p>
-    <div class="hero-ctas">
-        <a href="https://cloud.lucenia.io" class="btn btn-fill btn-lg">Deploy Now</a>
-        <a href="mailto:sales@lucenia.io" class="btn btn-ghost btn-lg">Talk to Sales</a>
+    <h1>Sovereign AI.<br>One stack. <em>Your boundary.</em></h1>
+    <p class="sub">Retrieval, models, agents, and operations — no data leaves, 90% less token spend, deploy in minutes.</p>
+    <div class="btns">
+        <a href="https://cloud.lucenia.io" class="btn-p">Deploy Now</a>
+        <a href="mailto:sales@lucenia.io" class="btn-s">Talk to Sales</a>
     </div>
     <div class="proof">
-        <span class="proof-item">Built by the creator of OpenSearch</span>
-        <span class="proof-dot"></span>
-        <span class="proof-item">O'Reilly published</span>
-        <span class="proof-dot"></span>
-        <span class="proof-item">Fortune 500 trusted</span>
+        <span>Built by the creator of OpenSearch</span>
+        <i></i>
+        <span>O'Reilly published</span>
+        <i></i>
+        <span>Fortune 500 trusted</span>
     </div>
 </section>
+</div>
 
+<hr class="sep">
 
+<div class="wrap">
 <section class="how">
-    <div class="how-inner">
-        <div class="how-text">
+    <div class="inner">
+        <div>
             <p class="eyebrow">Why 90% less</p>
             <h2>The right model for every task.</h2>
-            <p>Most queries don't need a frontier model. Lucenia routes each task to the cheapest model that handles it — grounded by your private data. Frontier only when needed. Context only — no data leaves.</p>
+            <p class="desc">Most queries don't need a frontier model. Lucenia routes each task to the cheapest model that handles it — grounded by your private data. Frontier only when needed. Context only — no data leaves.</p>
         </div>
         <div class="tiers">
-            <div class="tier t3">
-                <div class="tier-n">3</div>
-                <div class="tier-info"><strong>Frontier</strong><span>Context only</span></div>
-                <div class="tier-cost">$$$</div>
-            </div>
-            <div class="tier t2">
-                <div class="tier-n">2</div>
-                <div class="tier-info"><strong>Reasoning</strong><span>When needed</span></div>
-                <div class="tier-cost">$$</div>
-            </div>
-            <div class="tier t1">
-                <div class="tier-n">1</div>
-                <div class="tier-info"><strong>Local</strong><span>Most queries</span></div>
-                <div class="tier-cost">$</div>
-            </div>
+            <div class="tier t3"><div class="n">3</div><div class="body"><strong>Frontier</strong><span>Context only</span></div><div class="cost">$$$</div></div>
+            <div class="tier t2"><div class="n">2</div><div class="body"><strong>Reasoning</strong><span>When needed</span></div><div class="cost">$$</div></div>
+            <div class="tier t1"><div class="n">1</div><div class="body"><strong>Local</strong><span>Most queries</span></div><div class="cost">$</div></div>
         </div>
     </div>
 </section>
+</div>
 
-<section class="studio">
-    <div class="studio-inner">
+<section class="studio"><div class="wrap">
+    <div class="head">
         <p class="eyebrow">The Platform</p>
-        <h2>Five studios. <span>One boundary.</span></h2>
-        <p class="studio-sub">From retrieval to agent to production — governed, secure, and entirely within your perimeter.</p>
-        <div class="studio-grid">
-            <div class="s-card">
-                <div class="s-icon si-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                <h3>Retrieval</h3>
-                <p>Hybrid search. Full-text, vector, semantic.</p>
-            </div>
-            <div class="s-card">
-                <div class="s-icon si-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/></svg></div>
-                <h3>Connectors</h3>
-                <p>Enterprise data sources. Templates or custom.</p>
-            </div>
-            <div class="s-card">
-                <div class="s-icon si-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-                <h3>Models</h3>
-                <p>BYO or hosted. Your environment.</p>
-            </div>
-            <div class="s-card">
-                <div class="s-icon si-pink"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div>
-                <h3>Agents</h3>
-                <p>Templates or custom. MCP-native.</p>
-            </div>
-            <div class="s-card">
-                <div class="s-icon si-cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
-                <h3>Operations</h3>
-                <p>Managed pipeline. Uptime, scaling, patches.</p>
-            </div>
-        </div>
+        <h2>Five studios. <em>One boundary.</em></h2>
+        <p>From retrieval to agent to production — governed, secure, and entirely within your perimeter.</p>
     </div>
-</section>
+    <div class="grid5">
+        <div class="card"><div class="ico ico-b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Retrieval</h3><p>Hybrid search. Full-text, vector, semantic.</p></div>
+        <div class="card"><div class="ico ico-g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/></svg></div><h3>Connectors</h3><p>Enterprise data sources. Templates or custom.</p></div>
+        <div class="card"><div class="ico ico-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Models</h3><p>BYO or hosted. Your environment.</p></div>
+        <div class="card"><div class="ico ico-p"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Agents</h3><p>Templates or custom. MCP-native.</p></div>
+        <div class="card"><div class="ico ico-c"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3>Operations</h3><p>Managed pipeline. Uptime, scaling, patches.</p></div>
+    </div>
+</div></section>
 
-<section class="cta">
+<section class="cta"><div class="wrap">
     <h2>Your data. Your models. Your call.</h2>
-    <p>No external endpoints. No data egress. Deploy anywhere.</p>
-    <div class="cta-btns">
-        <a href="https://cloud.lucenia.io" class="cta-w">Try Lucenia Free</a>
-        <a href="mailto:sales@lucenia.io" class="cta-o">Talk to Sales</a>
+    <p class="sub">No external endpoints. No data egress. Deploy anywhere.</p>
+    <div class="btns">
+        <a href="https://cloud.lucenia.io" class="btn-w">Try Lucenia Free</a>
+        <a href="mailto:sales@lucenia.io" class="btn-o">Talk to Sales</a>
     </div>
-</section>
+</div></section>
 
-<footer>
+<footer><div class="wrap">
     <div class="badges">
-        <div class="badge"><div class="badge-icon">SOC 2</div><div class="badge-label">Type II</div></div>
-        <div class="badge"><div class="badge-icon">FIPS</div><div class="badge-label">140-3</div></div>
-        <div class="badge"><div class="badge-icon">HIPAA</div><div class="badge-label">Compliant</div></div>
-        <div class="badge"><div class="badge-icon">GDPR</div><div class="badge-label">Compliant</div></div>
-        <div class="badge"><div class="badge-icon">TLS</div><div class="badge-label">1.3</div></div>
-        <div class="badge"><div class="badge-icon">AES</div><div class="badge-label">256-bit</div></div>
+        <div class="badge"><div class="b">SOC 2</div><div class="l">Type II</div></div>
+        <div class="badge"><div class="b">FIPS</div><div class="l">140-3</div></div>
+        <div class="badge"><div class="b">HIPAA</div><div class="l">Compliant</div></div>
+        <div class="badge"><div class="b">GDPR</div><div class="l">Compliant</div></div>
+        <div class="badge"><div class="b">TLS</div><div class="l">1.3</div></div>
+        <div class="badge"><div class="b">AES</div><div class="l">256-bit</div></div>
     </div>
-    <div class="foot">
+    <div class="foot-grid">
         <div class="foot-brand">
             <img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia">
             <p>The sovereign AI platform. Built by the creator of OpenSearch.</p>
@@ -439,8 +358,8 @@
             <a href="https://lucenia.io/terms">Terms</a>
         </div>
     </div>
-    <div class="foot-bottom">&copy; 2026 Lucenia, Inc. All rights reserved.</div>
-</footer>
+    <div class="copyright">&copy; 2026 Lucenia, Inc. All rights reserved.</div>
+</div></footer>
 
 </body>
 </html>
