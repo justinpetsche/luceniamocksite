@@ -7,28 +7,34 @@
     <meta name="description" content="Sovereign AI. One stack. Your boundary. Retrieval, models, agents, and operations — no data leaves, 90% less token spend, deploy in minutes.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="icon" href="https://lucenia.io/img/lucenia-icon.png" type="image/png">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --navy: #0f2b4a;
-            --navy-dark: #091e34;
+            --navy: #0a1e33;
+            --navy-mid: #0f2b4a;
+            --navy-light: #163a5f;
             --blue: #2b7ab5;
-            --gold: #c4893b;
-            --green: #2a9d6e;
+            --blue-bright: #3d9be0;
+            --gold: #d4973f;
+            --gold-soft: rgba(212,151,63,0.12);
+            --green: #22c568;
+            --green-soft: rgba(34,197,104,0.1);
             --purple: #7c5cbf;
             --pink: #c45b7c;
             --cyan: #2ba5b5;
-            --bg: #f8f9fb;
-            --text: #1e293b;
-            --muted: #64748b;
-            --faint: #94a3b8;
-            --line: #e2e7ed;
-            --page: 960px;
-            --gutter: 32px;
-            --section: 120px;
+            --bg: #f7f8fb;
+            --bg-warm: #faf9f7;
+            --text: #1a2332;
+            --text-secondary: #4a5568;
+            --muted: #6b7b8f;
+            --faint: #9ca8b8;
+            --line: #e4e8ee;
+            --line-light: #eef1f5;
+            --page: 1100px;
+            --gutter: 40px;
         }
 
         body {
@@ -41,291 +47,754 @@
         /* ── Nav ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--line);
-            height: 60px; display: flex; align-items: center;
+            background: rgba(255,255,255,0.88); backdrop-filter: blur(20px) saturate(1.4);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            height: 64px; display: flex; align-items: center;
         }
         nav .wrap {
             display: flex; align-items: center; justify-content: space-between;
             width: 100%;
         }
         nav img { height: 26px; display: block; }
-        nav a.cta {
-            font-size: 13px; font-weight: 600; color: #fff;
-            background: var(--navy); border: 1px solid var(--navy);
-            padding: 8px 20px; border-radius: 6px; text-decoration: none;
-            transition: background 0.15s;
+        nav .nav-links { display: flex; align-items: center; gap: 36px; }
+        nav .nav-links a.link {
+            font-size: 13.5px; font-weight: 500; color: var(--muted);
+            text-decoration: none; transition: color 0.2s;
         }
-        nav a.cta:hover { background: var(--navy-dark); }
+        nav .nav-links a.link:hover { color: var(--navy); }
+        nav a.cta-nav {
+            font-size: 13px; font-weight: 600; color: #fff;
+            background: var(--navy); padding: 9px 22px; border-radius: 8px;
+            text-decoration: none; transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(10,30,51,0.12);
+        }
+        nav a.cta-nav:hover { background: var(--navy-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(10,30,51,0.15); }
 
         /* ── Hero ── */
+        .hero-wrapper {
+            background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+            padding-bottom: 1px;
+        }
         .hero {
-            padding: 160px 0 var(--section);
+            padding: 160px 0 80px;
             text-align: center;
         }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border-radius: 100px;
+            background: var(--green-soft); border: 1px solid rgba(34,197,104,0.2);
+            font-size: 12px; font-weight: 600; color: #1a8a4a;
+            margin-bottom: 28px;
+        }
+        .hero-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
         .hero h1 {
-            font-size: 52px; font-weight: 800; line-height: 1.08;
-            letter-spacing: -0.035em; color: var(--navy); margin-bottom: 20px;
+            font-size: 60px; font-weight: 900; line-height: 1.05;
+            letter-spacing: -0.04em; color: var(--navy); margin-bottom: 24px;
         }
         .hero h1 em {
-            font-style: normal; color: var(--blue);
+            font-style: normal;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-bright) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .hero .sub {
-            font-size: 18px; color: var(--muted); line-height: 1.7;
-            max-width: 560px; margin: 0 auto 40px;
+            font-size: 18px; color: var(--text-secondary); line-height: 1.7;
+            max-width: 560px; margin: 0 auto 40px; font-weight: 400;
         }
         .hero .btns {
-            display: flex; gap: 12px; justify-content: center;
-            margin-bottom: 64px;
+            display: flex; gap: 14px; justify-content: center;
+            margin-bottom: 56px;
         }
-        .btn-p, .btn-s {
-            padding: 14px 28px; border-radius: 8px; font-size: 15px;
-            font-weight: 600; text-decoration: none; transition: all 0.15s;
+        .btn-p {
+            padding: 15px 32px; border-radius: 10px; font-size: 15px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s;
             display: inline-block;
+            background: var(--navy); color: #fff; border: 1px solid var(--navy);
+            box-shadow: 0 2px 8px rgba(10,30,51,0.15);
         }
-        .btn-p { background: var(--navy); color: #fff; border: 1px solid var(--navy); }
-        .btn-p:hover { background: var(--navy-dark); }
-        .btn-s { background: none; color: var(--navy); border: 1px solid var(--line); }
+        .btn-p:hover { background: var(--navy-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,30,51,0.2); }
+        .btn-s {
+            padding: 15px 32px; border-radius: 10px; font-size: 15px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s;
+            display: inline-block;
+            background: #fff; color: var(--navy); border: 1px solid var(--line);
+        }
         .btn-s:hover { border-color: var(--navy); }
+
         .proof {
             display: flex; align-items: center; justify-content: center;
-            gap: 20px; flex-wrap: wrap;
-            font-size: 12px; color: var(--faint); font-weight: 500;
+            gap: 24px; flex-wrap: wrap;
+            font-size: 13px; color: var(--faint); font-weight: 500;
         }
-        .proof i {
-            width: 3px; height: 3px; border-radius: 50%;
-            background: var(--line); display: inline-block; font-style: normal;
-        }
-
-        /* ── Divider ── */
-        hr.sep {
-            border: none; border-top: 1px solid var(--line);
-            margin: 0;
+        .proof span { display: flex; align-items: center; gap: 6px; }
+        .proof svg { opacity: 0.4; }
+        .proof .sep {
+            width: 1px; height: 16px; background: var(--line);
         }
 
-        /* ── How ── */
-        .how {
-            padding: var(--section) 0;
+        /* ── Stats ── */
+        .stats {
+            padding: 56px 0;
+            border-top: 1px solid var(--line);
+            background: #fff;
         }
-        .how .inner {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 72px;
-            align-items: start;
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
         }
+        .stat-item {
+            text-align: center; padding: 12px 0;
+        }
+        .stat-item:not(:last-child) {
+            border-right: 1px solid var(--line);
+        }
+        .stat-item .num {
+            font-size: 48px; font-weight: 900; letter-spacing: -0.04em;
+            line-height: 1; margin-bottom: 8px;
+        }
+        .stat-item:nth-child(1) .num {
+            background: linear-gradient(135deg, var(--green) 0%, #1aad5a 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stat-item:nth-child(2) .num { color: var(--blue); }
+        .stat-item:nth-child(3) .num { color: var(--gold); }
+        .stat-item .label {
+            font-size: 13px; color: var(--muted); font-weight: 500;
+        }
+
+        /* ── Section layout ── */
+        .section { padding: 100px 0; }
+        .section-alt { background: var(--bg); }
+        .section-dark {
+            background: var(--navy);
+            background: linear-gradient(160deg, var(--navy) 0%, #0d2440 50%, #132f4f 100%);
+        }
+
         .eyebrow {
             font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.15em; color: var(--blue); margin-bottom: 14px;
+            letter-spacing: 0.14em; margin-bottom: 14px;
+            display: inline-block;
         }
-        .how h2 {
-            font-size: 32px; font-weight: 800; line-height: 1.15;
-            letter-spacing: -0.025em; color: var(--navy); margin-bottom: 14px;
-        }
-        .how .desc {
-            font-size: 15px; color: var(--muted); line-height: 1.7;
-        }
-        .tiers { display: flex; flex-direction: column; gap: 10px; }
-        .tier {
-            display: flex; align-items: center; gap: 14px;
-            padding: 16px 20px; border-radius: 10px;
-            border: 1px solid var(--line); background: var(--bg);
-        }
-        .tier .n {
-            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 13px; font-weight: 800;
-        }
-        .t1 .n { background: rgba(42,157,110,0.1); color: var(--green); }
-        .t2 .n { background: rgba(196,137,59,0.1); color: var(--gold); }
-        .t3 .n { background: rgba(196,91,124,0.1); color: var(--pink); }
-        .tier .body { flex: 1; }
-        .tier .body strong { font-size: 14px; color: var(--navy); }
-        .tier .body span { font-size: 12px; color: var(--faint); margin-left: 8px; }
-        .tier .cost { font-size: 16px; font-weight: 800; color: var(--faint); letter-spacing: -0.02em; }
+        .eyebrow-blue { color: var(--blue); }
+        .eyebrow-gold { color: var(--gold); }
+        .eyebrow-green { color: var(--green); }
 
-        /* ── Studio ── */
-        .studio {
-            padding: var(--section) 0;
-            background: var(--bg); border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
+        h2.sec-title {
+            font-size: 40px; font-weight: 900; line-height: 1.1;
+            letter-spacing: -0.03em; color: var(--navy); margin-bottom: 16px;
         }
-        .studio .head { text-align: center; margin-bottom: 48px; }
-        .studio h2 {
-            font-size: 32px; font-weight: 800; color: var(--navy);
-            letter-spacing: -0.025em; margin-bottom: 10px;
+        h2.sec-title em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-bright) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .studio h2 em { font-style: normal; color: var(--blue); }
-        .studio .head p {
-            font-size: 15px; color: var(--muted); max-width: 500px;
-            margin: 0 auto; line-height: 1.7;
+        .section-dark h2.sec-title { color: #fff; }
+        .section-dark h2.sec-title em {
+            background: linear-gradient(135deg, var(--gold) 0%, #e0a84e 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+        .sec-desc {
+            font-size: 16px; color: var(--text-secondary); line-height: 1.75;
+            max-width: 520px;
+        }
+        .section-dark .sec-desc { color: rgba(255,255,255,0.5); }
+
+        .sec-head { text-align: center; margin-bottom: 60px; }
+        .sec-head .sec-desc { margin: 0 auto; }
+
+        /* ── Split sections ── */
+        .split {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+            align-items: center;
+        }
+
+        /* ── Trust boundary ── */
+        .boundary-box {
+            border: 2px solid var(--green); border-radius: 16px;
+            padding: 36px 28px 28px; position: relative;
+            background: linear-gradient(135deg, rgba(34,197,104,0.03) 0%, rgba(43,122,181,0.03) 100%);
+        }
+        .boundary-label {
+            position: absolute; top: -11px; left: 24px;
+            background: var(--green); color: #fff;
+            font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; padding: 3px 12px; border-radius: 5px;
+        }
+        .boundary-items {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .b-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 14px; background: #fff;
+            border: 1px solid var(--line); border-radius: 10px;
+            font-size: 13px; font-weight: 600; color: var(--navy);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .b-dot {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+        }
+        .bd-blue { background: var(--blue); }
+        .bd-green { background: var(--green); }
+        .bd-purple { background: var(--purple); }
+        .bd-gold { background: var(--gold); }
+        .boundary-connector {
+            text-align: center; padding: 16px 0 8px;
+        }
+        .connector-line {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 7px 16px; background: #fff;
+            border: 1px dashed var(--line); border-radius: 8px;
+            font-size: 11px; color: var(--faint); font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+        .external-bar {
+            text-align: center; margin-top: 12px;
+        }
+        .ext-label {
+            font-size: 10px; color: var(--faint); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .ext-chips {
+            display: flex; justify-content: center; gap: 8px;
+        }
+        .ext-chip {
+            padding: 6px 14px; border-radius: 8px;
+            border: 1px solid var(--line); background: var(--bg);
+            font-size: 11px; color: var(--muted); font-weight: 500;
+        }
+
+        /* ── Tiered routing (dark section) ── */
+        .tiers { display: flex; flex-direction: column; gap: 12px; }
+        .tier {
+            display: flex; align-items: center; gap: 18px;
+            padding: 22px 24px; border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+            transition: all 0.2s;
+        }
+        .tier:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.1);
+            transform: translateX(4px);
+        }
+        .tier .badge {
+            width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 800;
+        }
+        .t1 .badge { background: rgba(34,197,104,0.12); color: var(--green); }
+        .t2 .badge { background: rgba(212,151,63,0.12); color: var(--gold); }
+        .t3 .badge { background: rgba(196,91,124,0.12); color: var(--pink); }
+        .tier .body { flex: 1; }
+        .tier .body strong {
+            font-size: 15px; font-weight: 700; color: #fff;
+            display: block; margin-bottom: 2px;
+        }
+        .tier .body span { font-size: 12.5px; color: rgba(255,255,255,0.4); }
+        .tier .cost {
+            font-size: 18px; font-weight: 800;
+            color: rgba(255,255,255,0.15); letter-spacing: -0.02em;
+        }
+
+        .routing-stat {
+            display: flex; align-items: baseline; gap: 10px;
+            margin-top: 28px; padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .routing-stat .big {
+            font-size: 36px; font-weight: 900; letter-spacing: -0.03em;
+            background: linear-gradient(135deg, var(--green) 0%, #4ade80 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .routing-stat .note {
+            font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.5;
+        }
+
+        /* ── Platform cards ── */
         .grid5 {
             display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
         }
         .card {
             background: #fff; border: 1px solid var(--line);
-            border-radius: 12px; padding: 28px 16px; text-align: center;
+            border-radius: 14px; padding: 28px 20px; text-align: left;
+            transition: all 0.25s;
+        }
+        .card:hover {
+            border-color: rgba(43,122,181,0.3);
+            box-shadow: 0 8px 30px rgba(43,122,181,0.08);
+            transform: translateY(-3px);
         }
         .card .ico {
-            width: 44px; height: 44px; border-radius: 10px;
+            width: 42px; height: 42px; border-radius: 11px;
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 14px;
+            margin-bottom: 16px;
         }
-        .ico-b { background: rgba(43,122,181,0.07); color: var(--blue); }
-        .ico-g { background: rgba(42,157,110,0.07); color: var(--green); }
-        .ico-v { background: rgba(124,92,191,0.07); color: var(--purple); }
-        .ico-p { background: rgba(196,91,124,0.07); color: var(--pink); }
-        .ico-c { background: rgba(43,165,181,0.07); color: var(--cyan); }
-        .card h3 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-        .card p { font-size: 12px; color: var(--faint); line-height: 1.5; }
+        .ico-b { background: rgba(43,122,181,0.08); color: var(--blue); }
+        .ico-g { background: rgba(34,197,104,0.08); color: var(--green); }
+        .ico-v { background: rgba(124,92,191,0.08); color: var(--purple); }
+        .ico-p { background: rgba(196,91,124,0.08); color: var(--pink); }
+        .ico-c { background: rgba(43,165,181,0.08); color: var(--cyan); }
+        .card h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+        .card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
-        /* ── CTA ── */
-        .cta {
-            background: var(--navy); padding: 80px 0; text-align: center;
+        /* ── Use cases ── */
+        .grid3 {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
         }
-        .cta h2 {
-            font-size: 32px; font-weight: 800; color: #fff;
-            letter-spacing: -0.025em; margin-bottom: 12px;
+        .use-card {
+            padding: 32px 24px; border-radius: 14px;
+            border: 1px solid var(--line); background: #fff;
+            transition: all 0.25s;
         }
-        .cta .sub { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
-        .cta .btns { display: flex; gap: 12px; justify-content: center; }
-        .cta .btn-w {
-            background: #fff; color: var(--navy); padding: 14px 28px;
-            border-radius: 8px; font-size: 15px; font-weight: 600;
-            text-decoration: none; transition: background 0.15s;
+        .use-card:hover {
+            border-color: rgba(43,122,181,0.3);
+            box-shadow: 0 8px 30px rgba(43,122,181,0.08);
+            transform: translateY(-3px);
         }
-        .cta .btn-w:hover { background: #f1f5f9; }
-        .cta .btn-o {
-            border: 1px solid rgba(255,255,255,0.2); color: #fff;
-            padding: 14px 28px; border-radius: 8px; font-size: 15px;
+        .use-card .use-icon { margin-bottom: 16px; display: block; }
+        .use-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+        .use-card p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+        /* ── Deploy ── */
+        .grid4 {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+        }
+        .deploy-card {
+            padding: 32px 20px; border-radius: 14px;
+            border: 1px solid var(--line); background: #fff;
+            text-align: center; transition: all 0.25s;
+        }
+        .deploy-card:hover {
+            border-color: rgba(43,122,181,0.3);
+            box-shadow: 0 8px 30px rgba(43,122,181,0.08);
+            transform: translateY(-3px);
+        }
+        .deploy-card .d-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: rgba(43,122,181,0.06);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px; color: var(--blue);
+        }
+        .deploy-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+        .deploy-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+        /* ── Credibility ── */
+        .cred-list { list-style: none; }
+        .cred-list li {
+            padding: 18px 0; border-bottom: 1px solid var(--line-light);
+            display: flex; align-items: flex-start; gap: 16px;
+            font-size: 15px; color: var(--text); line-height: 1.65;
+        }
+        .cred-list li:last-child { border-bottom: none; }
+        .cred-check {
+            width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+            background: var(--green-soft); color: var(--green);
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 2px;
+        }
+
+        /* ── Compliance ── */
+        .compliance {
+            padding: 48px 0;
+            border-top: 1px solid var(--line);
+        }
+        .compliance-row {
+            display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+        }
+        .c-item {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .c-badge {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--bg); border: 1px solid var(--line);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 800; color: var(--navy);
+        }
+        .c-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+        /* ── Bottom CTA ── */
+        .bottom-cta {
+            background: var(--navy);
+            background: linear-gradient(160deg, var(--navy) 0%, #0d2440 50%, #132f4f 100%);
+            padding: 100px 0; text-align: center;
+        }
+        .bottom-cta h2 {
+            font-size: 40px; font-weight: 900; color: #fff;
+            letter-spacing: -0.03em; margin-bottom: 16px;
+        }
+        .bottom-cta .sub {
+            font-size: 17px; color: rgba(255,255,255,0.4);
+            margin-bottom: 36px; font-weight: 400;
+        }
+        .bottom-cta .btns { display: flex; gap: 14px; justify-content: center; }
+        .bottom-cta .btn-w {
+            background: #fff; color: var(--navy); padding: 15px 32px;
+            border-radius: 10px; font-size: 15px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .bottom-cta .btn-w:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .bottom-cta .btn-o {
+            border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8);
+            padding: 15px 32px; border-radius: 10px; font-size: 15px;
             font-weight: 600; text-decoration: none; background: none;
+            transition: all 0.2s;
         }
-        .cta .btn-o:hover { border-color: rgba(255,255,255,0.4); }
+        .bottom-cta .btn-o:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
 
         /* ── Footer ── */
         footer {
-            padding: 56px 0 40px;
+            padding: 64px 0 48px;
             border-top: 1px solid var(--line); background: var(--bg);
         }
-        .badges {
-            display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
-            padding-bottom: 40px; margin-bottom: 40px;
-            border-bottom: 1px solid var(--line);
-        }
-        .badge { text-align: center; }
-        .badge .b {
-            width: 48px; height: 48px; border-radius: 10px;
-            background: #fff; border: 1px solid var(--line);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 6px;
-            font-size: 11px; font-weight: 800; color: var(--navy);
-        }
-        .badge .l { font-size: 10px; color: var(--faint); font-weight: 600; }
         .foot-grid {
-            display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px;
-            margin-bottom: 40px;
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 40px;
+            margin-bottom: 48px;
         }
-        .foot-brand img { height: 22px; margin-bottom: 10px; }
-        .foot-brand p { font-size: 12px; color: var(--faint); line-height: 1.6; }
+        .foot-brand img { height: 24px; margin-bottom: 14px; }
+        .foot-brand p { font-size: 13px; color: var(--faint); line-height: 1.7; }
         .foot-col h4 {
             font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.1em; color: var(--navy); margin-bottom: 14px;
+            letter-spacing: 0.1em; color: var(--navy); margin-bottom: 16px;
         }
         .foot-col a {
-            display: block; font-size: 13px; color: var(--muted);
-            text-decoration: none; margin-bottom: 10px; transition: color 0.15s;
+            display: block; font-size: 13.5px; color: var(--muted);
+            text-decoration: none; margin-bottom: 12px; transition: color 0.2s;
         }
         .foot-col a:hover { color: var(--navy); }
         .copyright {
-            padding-top: 24px; border-top: 1px solid var(--line);
-            font-size: 11px; color: var(--faint);
+            padding-top: 28px; border-top: 1px solid var(--line);
+            font-size: 12px; color: var(--faint);
         }
 
         /* ── Responsive ── */
-        @media (max-width: 768px) {
-            :root { --section: 80px; --gutter: 24px; }
-            .hero { padding-top: 130px; }
-            .hero h1 { font-size: 36px; }
-            .how .inner { grid-template-columns: 1fr; gap: 40px; }
-            .grid5 { grid-template-columns: repeat(2, 1fr); }
-            .grid5 .card:last-child { grid-column: span 2; }
-            .foot-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-            .badges { gap: 20px; }
+        @media (max-width: 960px) {
+            :root { --gutter: 28px; }
+            .hero { padding: 140px 0 64px; }
+            .hero h1 { font-size: 42px; }
+            h2.sec-title { font-size: 32px; }
+            .split { grid-template-columns: 1fr; gap: 48px; }
+            .grid5 { grid-template-columns: repeat(3, 1fr); }
+            .grid3 { grid-template-columns: repeat(2, 1fr); }
+            .grid4 { grid-template-columns: repeat(2, 1fr); }
+            .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
         }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 30px; }
-            .grid5 { grid-template-columns: 1fr; }
-            .grid5 .card:last-child { grid-column: span 1; }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 34px; }
+            h2.sec-title { font-size: 28px; }
+            .stat-item .num { font-size: 36px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat-item { padding: 16px 0; }
+            .stat-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--line); }
+            .grid5, .grid3, .grid4 { grid-template-columns: 1fr; }
             .foot-grid { grid-template-columns: 1fr; }
+            .boundary-items { grid-template-columns: 1fr; }
+            .compliance-row { gap: 24px; }
+            .proof .sep { display: none; }
+            .proof { gap: 12px; }
+            nav .nav-links a.link { display: none; }
         }
     </style>
 </head>
 <body>
 
+<!-- Nav -->
 <nav><div class="wrap">
     <a href="#"><img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia"></a>
-    <a href="mailto:sales@lucenia.io" class="cta">Talk to Sales</a>
+    <div class="nav-links">
+        <a href="https://lucenia.io/docs" class="link">Docs</a>
+        <a href="https://lucenia.io/pricing" class="link">Pricing</a>
+        <a href="mailto:sales@lucenia.io" class="cta-nav">Talk to Sales</a>
+    </div>
 </div></nav>
 
+<!-- Hero -->
+<div class="hero-wrapper">
 <div class="wrap">
 <section class="hero">
+    <div class="hero-badge"><span class="dot"></span> Now available on Lucenia Cloud</div>
     <h1>Sovereign AI.<br>One stack. <em>Your boundary.</em></h1>
-    <p class="sub">Retrieval, models, agents, and operations — no data leaves, 90% less token spend, deploy in minutes.</p>
+    <p class="sub">Enterprise search, retrieval, and agents — entirely within your perimeter. No data egress. 90% less token spend.</p>
     <div class="btns">
         <a href="https://cloud.lucenia.io" class="btn-p">Deploy Now</a>
         <a href="mailto:sales@lucenia.io" class="btn-s">Talk to Sales</a>
     </div>
     <div class="proof">
         <span>Built by the creator of OpenSearch</span>
-        <i></i>
+        <div class="sep"></div>
         <span>O'Reilly published</span>
-        <i></i>
+        <div class="sep"></div>
         <span>Fortune 500 trusted</span>
+        <div class="sep"></div>
+        <span>8 patents</span>
     </div>
 </section>
 </div>
-
-<hr class="sep">
-
-<div class="wrap">
-<section class="how">
-    <div class="inner">
-        <div>
-            <p class="eyebrow">Why 90% less</p>
-            <h2>The right model for every task.</h2>
-            <p class="desc">Most queries don't need a frontier model. Lucenia routes each task to the cheapest model that handles it — grounded by your private data. Frontier only when needed. Context only — no data leaves.</p>
-        </div>
-        <div class="tiers">
-            <div class="tier t3"><div class="n">3</div><div class="body"><strong>Frontier</strong><span>Context only</span></div><div class="cost">$$$</div></div>
-            <div class="tier t2"><div class="n">2</div><div class="body"><strong>Reasoning</strong><span>When needed</span></div><div class="cost">$$</div></div>
-            <div class="tier t1"><div class="n">1</div><div class="body"><strong>Local</strong><span>Most queries</span></div><div class="cost">$</div></div>
-        </div>
-    </div>
-</section>
 </div>
 
-<section class="studio"><div class="wrap">
-    <div class="head">
-        <p class="eyebrow">The Platform</p>
-        <h2>Five studios. <em>One boundary.</em></h2>
-        <p>From retrieval to agent to production — governed, secure, and entirely within your perimeter.</p>
-    </div>
-    <div class="grid5">
-        <div class="card"><div class="ico ico-b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Retrieval</h3><p>Hybrid search. Full-text, vector, semantic.</p></div>
-        <div class="card"><div class="ico ico-g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/></svg></div><h3>Connectors</h3><p>Enterprise data sources. Templates or custom.</p></div>
-        <div class="card"><div class="ico ico-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3>Models</h3><p>BYO or hosted. Your environment.</p></div>
-        <div class="card"><div class="ico ico-p"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Agents</h3><p>Templates or custom. MCP-native.</p></div>
-        <div class="card"><div class="ico ico-c"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3>Operations</h3><p>Managed pipeline. Uptime, scaling, patches.</p></div>
+<!-- Stats -->
+<section class="stats"><div class="wrap">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="num">90%</div>
+            <div class="label">Less token spend via tiered routing</div>
+        </div>
+        <div class="stat-item">
+            <div class="num">Minutes</div>
+            <div class="label">From zero to production retrieval</div>
+        </div>
+        <div class="stat-item">
+            <div class="num">Zero</div>
+            <div class="label">Data leaves your perimeter</div>
+        </div>
     </div>
 </div></section>
 
-<section class="cta"><div class="wrap">
+<!-- Trust boundary -->
+<section class="section"><div class="wrap">
+    <div class="split">
+        <div>
+            <p class="eyebrow eyebrow-green">Trust</p>
+            <h2 class="sec-title">Your data never leaves. <em>Ever.</em></h2>
+            <p class="sec-desc">Retrieval, models, agents, and connectors all run inside your boundary. Public LLMs receive context only — never raw data. No API keys leaving the perimeter. No vendor lock-in. Audit everything.</p>
+        </div>
+        <div>
+            <div class="boundary-box">
+                <div class="boundary-label">Your perimeter</div>
+                <div class="boundary-items">
+                    <div class="b-item"><div class="b-dot bd-blue"></div>Retrieval</div>
+                    <div class="b-item"><div class="b-dot bd-green"></div>Connectors</div>
+                    <div class="b-item"><div class="b-dot bd-purple"></div>Local models</div>
+                    <div class="b-item"><div class="b-dot bd-gold"></div>Agents</div>
+                </div>
+                <div class="boundary-connector">
+                    <div class="connector-line">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                        Context only
+                    </div>
+                </div>
+            </div>
+            <div class="external-bar">
+                <div class="ext-label">External (when needed)</div>
+                <div class="ext-chips">
+                    <div class="ext-chip">OpenAI</div>
+                    <div class="ext-chip">Anthropic</div>
+                    <div class="ext-chip">Gemini</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></section>
+
+<!-- Tiered routing -->
+<section class="section section-dark"><div class="wrap">
+    <div class="split">
+        <div>
+            <p class="eyebrow eyebrow-gold">Cost</p>
+            <h2 class="sec-title">The right model for <em>every task.</em></h2>
+            <p class="sec-desc">Most queries don't need a frontier model. Lucenia's tiered routing sends each task to the cheapest model that handles it — local first, reasoning when needed, frontier only when required.</p>
+        </div>
+        <div>
+            <div class="tiers">
+                <div class="tier t1">
+                    <div class="badge">1</div>
+                    <div class="body"><strong>Local models</strong><span>Handle most queries. Free. Inside your boundary.</span></div>
+                    <div class="cost">$</div>
+                </div>
+                <div class="tier t2">
+                    <div class="badge">2</div>
+                    <div class="body"><strong>Reasoning models</strong><span>Complex analysis. Only when local can't.</span></div>
+                    <div class="cost">$$</div>
+                </div>
+                <div class="tier t3">
+                    <div class="badge">3</div>
+                    <div class="body"><strong>Frontier models</strong><span>Context only. No data sent. Last resort.</span></div>
+                    <div class="cost">$$$</div>
+                </div>
+            </div>
+            <div class="routing-stat">
+                <div class="big">90%</div>
+                <div class="note">average reduction in token spend across enterprise deployments</div>
+            </div>
+        </div>
+    </div>
+</div></section>
+
+<!-- Platform -->
+<section class="section section-alt"><div class="wrap">
+    <div class="sec-head">
+        <p class="eyebrow eyebrow-blue">The platform</p>
+        <h2 class="sec-title">Five studios. <em>One boundary.</em></h2>
+        <p class="sec-desc">From retrieval to agents to production — governed, secure, and entirely within your perimeter.</p>
+    </div>
+    <div class="grid5">
+        <div class="card">
+            <div class="ico ico-b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <h3>Retrieval</h3>
+            <p>Hybrid search across full-text, vector, and semantic — in one index.</p>
+        </div>
+        <div class="card">
+            <div class="ico ico-g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/></svg></div>
+            <h3>Connectors</h3>
+            <p>Pre-built for Slack, Drive, Jira, Confluence, S3, and custom sources.</p>
+        </div>
+        <div class="card">
+            <div class="ico ico-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <h3>Models</h3>
+            <p>Bring your own or use hosted. Runs in your environment, not ours.</p>
+        </div>
+        <div class="card">
+            <div class="ico ico-p"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Agents</h3>
+            <p>Build from templates or custom. MCP-native. Full audit trail.</p>
+        </div>
+        <div class="card">
+            <div class="ico ico-c"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+            <h3>Operations</h3>
+            <p>Monitoring, scaling, patching, uptime — fully managed pipeline.</p>
+        </div>
+    </div>
+</div></section>
+
+<!-- Use cases -->
+<section class="section"><div class="wrap">
+    <div class="sec-head">
+        <p class="eyebrow eyebrow-blue">Use cases</p>
+        <h2 class="sec-title">Agents that work <em>inside the boundary.</em></h2>
+        <p class="sec-desc">Pre-built templates or fully custom. Every interaction grounded by your private data, governed by your policies.</p>
+    </div>
+    <div class="grid3">
+        <div class="use-card">
+            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+            <h3>Research</h3>
+            <p>Deep search across internal docs, contracts, and knowledge bases. Answers grounded in your data, not the internet.</p>
+        </div>
+        <div class="use-card">
+            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+            <h3>Coding</h3>
+            <p>Code generation, review, and refactoring grounded in your codebase and internal standards.</p>
+        </div>
+        <div class="use-card">
+            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <h3>Support</h3>
+            <p>Customer-facing and internal support agents that pull from your real docs, tickets, and runbooks.</p>
+        </div>
+        <div class="use-card">
+            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+            <h3>Workflow</h3>
+            <p>Multi-step automation across systems. Approvals, routing, data transforms — orchestrated by agents.</p>
+        </div>
+        <div class="use-card">
+            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span>
+            <h3>Analytics</h3>
+            <p>Natural language queries over your data warehouse. Dashboards and reports from conversation.</p>
+        </div>
+        <div class="use-card">
+            <span class="use-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+            <h3>Your agent</h3>
+            <p>Build anything. Full SDK, MCP protocol, and templates. Your logic, your data, your boundary.</p>
+        </div>
+    </div>
+</div></section>
+
+<!-- Deploy -->
+<section class="section section-alt"><div class="wrap">
+    <div class="sec-head">
+        <p class="eyebrow eyebrow-blue">Deploy anywhere</p>
+        <h2 class="sec-title">Your infrastructure. <em>Your rules.</em></h2>
+        <p class="sec-desc">Same platform, same API, every environment. From managed cloud to fully air-gapped.</p>
+    </div>
+    <div class="grid4">
+        <div class="deploy-card">
+            <div class="d-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+            <h3>Lucenia Cloud</h3>
+            <p>Managed SaaS. Up in minutes. We handle ops.</p>
+        </div>
+        <div class="deploy-card">
+            <div class="d-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+            <h3>Self-hosted</h3>
+            <p>Your servers, your control. Full platform on-prem.</p>
+        </div>
+        <div class="deploy-card">
+            <div class="d-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>BYOC</h3>
+            <p>Bring your own cloud. AWS, GCP, Azure — your VPC.</p>
+        </div>
+        <div class="deploy-card">
+            <div class="d-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <h3>Air-gapped</h3>
+            <p>No internet. No external calls. Fully isolated.</p>
+        </div>
+    </div>
+</div></section>
+
+<!-- Credibility -->
+<section class="section"><div class="wrap">
+    <div class="split">
+        <div>
+            <p class="eyebrow eyebrow-gold">Who built this</p>
+            <h2 class="sec-title">Built by the people who <em>built the category.</em></h2>
+            <p class="sec-desc">Lucenia was founded by Nicholas Knize, creator of OpenSearch, former principal engineer at AWS, and the architect behind enterprise search infrastructure used by thousands of organizations worldwide.</p>
+        </div>
+        <div>
+            <ul class="cred-list">
+                <li>
+                    <div class="cred-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    Created OpenSearch — the open-source search engine powering enterprises globally
+                </li>
+                <li>
+                    <div class="cred-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    O'Reilly published author on search architecture and distributed systems
+                </li>
+                <li>
+                    <div class="cred-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    8 patents in search, retrieval, and distributed computing
+                </li>
+                <li>
+                    <div class="cred-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    Fortune 500 deployments across finance, healthcare, and defense
+                </li>
+                <li>
+                    <div class="cred-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    Elastic and OpenSearch are crumbling — Lucenia is what comes next
+                </li>
+            </ul>
+        </div>
+    </div>
+</div></section>
+
+<!-- Compliance -->
+<div class="wrap">
+    <section class="compliance">
+        <div class="compliance-row">
+            <div class="c-item"><div class="c-badge">SOC2</div><div class="c-label">SOC 2 Type II</div></div>
+            <div class="c-item"><div class="c-badge">HIPAA</div><div class="c-label">HIPAA Ready</div></div>
+            <div class="c-item"><div class="c-badge">GDPR</div><div class="c-label">GDPR Compliant</div></div>
+            <div class="c-item"><div class="c-badge">FED</div><div class="c-label">FedRAMP Ready</div></div>
+            <div class="c-item"><div class="c-badge">ISO</div><div class="c-label">ISO 27001</div></div>
+        </div>
+    </section>
+</div>
+
+<!-- Bottom CTA -->
+<section class="bottom-cta"><div class="wrap">
     <h2>Your data. Your models. Your call.</h2>
     <p class="sub">No external endpoints. No data egress. Deploy anywhere.</p>
     <div class="btns">
-        <a href="https://cloud.lucenia.io" class="btn-w">Try Lucenia Free</a>
+        <a href="https://cloud.lucenia.io" class="btn-w">Deploy Now</a>
         <a href="mailto:sales@lucenia.io" class="btn-o">Talk to Sales</a>
     </div>
 </div></section>
 
+<!-- Footer -->
 <footer><div class="wrap">
     <div class="foot-grid">
         <div class="foot-brand">
