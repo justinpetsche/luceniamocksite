@@ -90,6 +90,91 @@
         .proof-item { font-size: 12px; color: var(--faint); font-weight: 500; }
         .proof-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--line); }
 
+        /* Compliance badges */
+        .badges {
+            max-width: 960px; margin: 0 auto;
+            padding: 0 32px 80px;
+            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+        }
+        .badge {
+            text-align: center;
+        }
+        .badge-icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            background: var(--bg); border: 1px solid var(--line);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 11px; font-weight: 800; color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+        .badge-label { font-size: 10px; color: var(--faint); font-weight: 600; }
+
+        /* Trust boundary diagram */
+        .boundary {
+            max-width: 960px; margin: 0 auto;
+            padding: 0 32px 100px;
+        }
+        .boundary-header {
+            text-align: center; margin-bottom: 40px;
+        }
+        .boundary-header h2 {
+            font-size: 30px; font-weight: 800; color: var(--navy);
+            letter-spacing: -0.02em; margin-bottom: 8px;
+        }
+        .boundary-header p {
+            font-size: 15px; color: var(--muted);
+        }
+        .boundary-grid {
+            display: grid; grid-template-columns: 1fr 48px 1fr; gap: 0;
+            align-items: stretch;
+        }
+        .boundary-box {
+            border-radius: 12px; padding: 28px 24px;
+        }
+        .b-danger {
+            background: #fef2f2; border: 1px solid #fecaca;
+        }
+        .b-safe {
+            background: #f0fdf4; border: 1px solid #bbf7d0;
+        }
+        .b-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; margin-bottom: 16px;
+        }
+        .b-danger .b-label { color: #dc2626; }
+        .b-safe .b-label { color: var(--green); }
+        .b-title {
+            font-size: 18px; font-weight: 700; color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .b-desc {
+            font-size: 13px; color: var(--muted); line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .b-items {
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .b-item {
+            font-size: 12px; color: var(--muted);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .b-item-dot {
+            width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+        }
+        .b-danger .b-item-dot { background: #fca5a5; }
+        .b-safe .b-item-dot { background: #86efac; }
+        .boundary-arrow {
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; gap: 4px;
+        }
+        .arrow-line {
+            width: 2px; flex: 1; min-height: 20px;
+            background: var(--line);
+        }
+        .arrow-icon {
+            font-size: 20px; color: var(--faint); font-weight: 300;
+        }
+
         /* How */
         .how {
             background: var(--bg); border-top: 1px solid var(--line);
@@ -206,6 +291,10 @@
         @media (max-width: 768px) {
             .hero { padding: 160px 24px 80px; }
             .hero h1 { font-size: 36px; }
+            .boundary-grid { grid-template-columns: 1fr; gap: 16px; }
+            .boundary-arrow { flex-direction: row; padding: 8px 0; }
+            .arrow-line { width: auto; height: 2px; min-height: auto; min-width: 20px; flex: 1; }
+            .badges { gap: 20px; }
             .how-inner { grid-template-columns: 1fr; gap: 32px; }
             .studio-grid { grid-template-columns: repeat(2, 1fr); }
             .studio-grid .s-card:last-child { grid-column: span 2; }
@@ -243,6 +332,72 @@
         <span class="proof-item">Fortune 500 trusted</span>
     </div>
 </section>
+
+<!-- Compliance badges -->
+<div class="badges">
+    <div class="badge">
+        <div class="badge-icon">SOC 2</div>
+        <div class="badge-label">Type II</div>
+    </div>
+    <div class="badge">
+        <div class="badge-icon">FIPS</div>
+        <div class="badge-label">140-3</div>
+    </div>
+    <div class="badge">
+        <div class="badge-icon">HIPAA</div>
+        <div class="badge-label">Compliant</div>
+    </div>
+    <div class="badge">
+        <div class="badge-icon">GDPR</div>
+        <div class="badge-label">Compliant</div>
+    </div>
+    <div class="badge">
+        <div class="badge-icon">TLS</div>
+        <div class="badge-label">1.3</div>
+    </div>
+    <div class="badge">
+        <div class="badge-icon">AES</div>
+        <div class="badge-label">256-bit</div>
+    </div>
+</div>
+
+<!-- Trust boundary: before vs after -->
+<div class="boundary">
+    <div class="boundary-header">
+        <p class="eyebrow">The Problem &amp; The Fix</p>
+        <h2>Where does your data go?</h2>
+        <p>Every AI tool today copies your data outside your perimeter. Lucenia doesn't.</p>
+    </div>
+    <div class="boundary-grid">
+        <div class="boundary-box b-danger">
+            <div class="b-label">Without Lucenia</div>
+            <div class="b-title">Your data leaves.</div>
+            <div class="b-desc">Hosted search copies your full index. Public LLMs ingest your prompts. You clicked "private" — they still hold the keys.</div>
+            <div class="b-items">
+                <div class="b-item"><span class="b-item-dot"></span>Full index + vectors copied to vendor</div>
+                <div class="b-item"><span class="b-item-dot"></span>Prompts processed on external infra</div>
+                <div class="b-item"><span class="b-item-dot"></span>No custody — vendor controls access</div>
+                <div class="b-item"><span class="b-item-dot"></span>Compliance risk at every boundary</div>
+            </div>
+        </div>
+        <div class="boundary-arrow">
+            <div class="arrow-line"></div>
+            <div class="arrow-icon">→</div>
+            <div class="arrow-line"></div>
+        </div>
+        <div class="boundary-box b-safe">
+            <div class="b-label">With Lucenia</div>
+            <div class="b-title">Nothing leaves.</div>
+            <div class="b-desc">Retrieval, models, and agents run inside your boundary. Public LLMs get context only — never the source data.</div>
+            <div class="b-items">
+                <div class="b-item"><span class="b-item-dot"></span>Data stays in your VPC / on-prem</div>
+                <div class="b-item"><span class="b-item-dot"></span>Local models handle most queries</div>
+                <div class="b-item"><span class="b-item-dot"></span>Frontier gets context only — no raw data</div>
+                <div class="b-item"><span class="b-item-dot"></span>Full custody, full compliance</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section class="how">
     <div class="how-inner">
