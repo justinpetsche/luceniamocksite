@@ -84,27 +84,27 @@
         .hero-logo { margin-bottom: 48px; }
         .hero-logo img { height: 40px; }
 
-        /* 3 hero props — visually distinct */
-        .hero-props {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 40px; margin-bottom: 48px;
+        /* Hero sequence — reads top to bottom like a story */
+        .hero-sequence {
+            margin-bottom: 48px;
         }
-        .hero-prop {
-            padding: 32px 16px;
+        .hero-line {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; margin-bottom: 12px;
         }
-        .hero-prop-icon {
-            font-size: 36px; margin-bottom: 16px;
+        .hero-line h2 {
+            font-size: clamp(32px, 5vw, 56px); font-weight: 800;
+            line-height: 1.1; letter-spacing: -0.03em;
         }
-        .hero-prop h2 {
-            font-size: 28px; font-weight: 800; line-height: 1.2;
-            letter-spacing: -0.02em; margin-bottom: 8px;
+        .hero-line p {
+            font-size: 15px; color: var(--gray); max-width: 400px;
         }
-        .hero-prop p {
-            font-size: 14px; color: var(--gray); line-height: 1.6;
+        .hero-line-sub {
+            text-align: center; margin-top: 4px; margin-bottom: 20px;
         }
-        .prop-blue h2 { color: var(--blue); }
-        .prop-gold h2 { color: var(--gold); }
-        .prop-navy h2 { color: var(--navy); }
+        .hero-line-sub p {
+            font-size: 15px; color: var(--gray); line-height: 1.6;
+        }
 
         .hero-tagline {
             font-size: 18px; color: var(--gray);
@@ -308,27 +308,26 @@
                 <img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia">
             </div>
 
-            <div class="hero-props">
-                <div class="hero-prop prop-blue">
-                    <div class="hero-prop-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h2>Trust</h2>
-                    <p>Your data never leaves your trust boundary. Full custody. Zero exceptions.</p>
+            <div class="hero-sequence">
+                <div class="hero-line">
+                    <h2>Your data <span style="color:var(--blue)">stays private.</span></h2>
                 </div>
-                <div class="hero-prop prop-gold">
-                    <div class="hero-prop-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    </div>
-                    <h2>Less Spend</h2>
-                    <p>90% less token spend. The right model for every task — not the most expensive one.</p>
+                <div class="hero-line-sub">
+                    <p>Full custody. Nothing leaves your trust boundary — ever.</p>
                 </div>
-                <div class="hero-prop prop-navy">
-                    <div class="hero-prop-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </div>
-                    <h2>Retrieval in Minutes</h2>
-                    <p>Private data retrieval — full-text, vector, semantic — running in your environment in minutes.</p>
+
+                <div class="hero-line">
+                    <h2>Your AI costs <span style="color:var(--gold)">90% less.</span></h2>
+                </div>
+                <div class="hero-line-sub">
+                    <p>Tiered model routing. Most queries hit a small local model. Frontier only when needed.</p>
+                </div>
+
+                <div class="hero-line">
+                    <h2>Set up in <span style="color:var(--navy)">minutes.</span></h2>
+                </div>
+                <div class="hero-line-sub">
+                    <p>Hybrid retrieval — full-text, vector, semantic — running in your environment. Not a six-month project.</p>
                 </div>
             </div>
 
