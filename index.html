@@ -81,9 +81,6 @@
             background: var(--off-white);
         }
         .hero-content { max-width: 900px; }
-        .hero-logo { margin-bottom: 48px; }
-        .hero-logo img { height: 40px; }
-
         .hero h1 {
             font-size: clamp(36px, 6vw, 60px); font-weight: 800;
             line-height: 1.1; letter-spacing: -0.03em;
@@ -91,11 +88,21 @@
         }
         .hero-points {
             margin-bottom: 40px;
+            font-size: 17px; color: var(--gray); line-height: 1.7;
+            max-width: 580px; margin-left: auto; margin-right: auto;
         }
-        .hero-points p {
-            font-size: 18px; color: var(--gray); line-height: 2;
+        .hero-chip {
+            display: inline-block;
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; padding: 3px 10px; border-radius: 4px;
+            margin-right: 6px; vertical-align: middle;
         }
-        .hero-points strong { color: var(--navy); font-weight: 600; }
+        .chip-blue { background: rgba(43,122,181,0.1); color: var(--blue); }
+        .chip-gold { background: rgba(196,137,59,0.1); color: var(--gold); }
+        .chip-navy { background: rgba(15,43,74,0.08); color: var(--navy); }
+        .hero-divider {
+            display: block; height: 12px;
+        }
 
         .hero-tagline {
             font-size: 18px; color: var(--gray);
@@ -295,16 +302,14 @@
     <!-- Hero: 3 distinct props -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-logo">
-                <img src="https://lucenia.io/img/lucenia-logo.png" alt="Lucenia">
-            </div>
-
             <h1>Private AI in a box.<br><span style="color:var(--blue)">Entirely yours.</span></h1>
 
             <div class="hero-points">
-                <p><strong>Private.</strong> Your data never leaves your trust boundary.</p>
-                <p><strong>Cheaper.</strong> 90% less token spend with tiered model routing.</p>
-                <p><strong>Fast.</strong> Hybrid retrieval running in your environment in minutes.</p>
+                <span class="hero-chip chip-blue">Private</span> Your data never leaves your trust boundary.
+                <span class="hero-divider"></span>
+                <span class="hero-chip chip-gold">Cheap</span> 90% less token spend with tiered model routing.
+                <span class="hero-divider"></span>
+                <span class="hero-chip chip-navy">Fast</span> Hybrid retrieval in your environment in minutes.
             </div>
 
             <div class="hero-ctas">
